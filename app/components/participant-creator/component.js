@@ -64,8 +64,6 @@ export default Ember.Component.extend({
                 this.set('createdAccounts', []);
             });
 
-            var tag = this.get('tag');
-            var batchSize = parseInt(this.get('batchSize')) || 0;
             var accounts = this.get('generatedParticipants');
             var store = this.get('store');
 
