@@ -73,6 +73,12 @@ export default Ember.Component.extend({
             });
             if (!useAsPassword) {
                 password = makeId(10);
+                this.get('extra').pushObject({
+                    key: 'password',
+                    value: password
+                });
+                extra['password'] = password;
+                this.set('useAsPassword', 'password');
             }
             Ember.run.later(this, () => {
                 this.set('_creatingPromise', Ember.RSVP.allSettled(
