@@ -45,7 +45,7 @@ export default Ember.Component.extend({
     },
     generatedParticipants: Ember.computed('batchSize', 'tag', function() {
         var tag = this.get('tag');
-        var batchSize = Math.min(parseInt(this.get('batchSize')) || 0, 10);
+        var batchSize = parseInt(this.get('batchSize')) || 0;
         return this._generate(batchSize, tag);
     }),
 
