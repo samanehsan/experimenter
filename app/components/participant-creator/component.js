@@ -115,7 +115,7 @@ export default Ember.Component.extend({
             var extra = this.get('extra');
             this.set('extra', extra.filter((item) => item.key !== field));
         },
-        useAsPassword(field, checked) {
+        useFieldAsPassword(field, checked) {
             if (checked) {
                 this.set('useAsPassword', field);
             } else {
