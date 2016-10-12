@@ -19,6 +19,7 @@ export default Ember.Component.extend({
     extra: null,
     nextExtra: '',
     useAsPassword: null,
+    invalidPassword: false,
 
     creating: false,
     createdAccounts: [],
@@ -68,9 +69,16 @@ export default Ember.Component.extend({
             this.get('extra').forEach(item => {
                 if (item.key === useAsPassword) {
                     password = Ember.get(item, 'value');
+                    if (!password || password === '') {
+                        this.set('invalidPassword', true);
+                    }
                 }
                 extra[item.key] = item.value;
             });
+            if (this.get('invalidPassword')) {
+                this.set('creating', false);
+                return;
+            }
             if (!useAsPassword) {
                 password = makeId(10);
                 this.get('extra').pushObject({
@@ -127,6 +135,9 @@ export default Ember.Component.extend({
                 type: 'text/plain;charset=utf-8'
             });
             window.saveAs(blob, 'participants.csv');
+        },
+        toggleInvalidPassword: function() {
+            this.toggleProperty('invalidPassword');
         }
     }
 });
