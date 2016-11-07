@@ -107,6 +107,10 @@ export default Ember.Component.extend({
                     Ember.run.later(this, () => {
                         this.set('creating', false);
                         this.send('downloadCSV');
+                        if (this.get('useAsPassword', 'password')) {
+                            this.send('removeExtraField', 'password');
+                            this.set('useAsPassword', null);
+                        }
                     }, 100);
                 }));
             }, 50);
