@@ -92,7 +92,8 @@ export default Ember.Component.extend({
         squashed.forEach((item) => {
             var line = [];
             fields.forEach(function(field) {
-                line.push(JSON.stringify(item[field]));
+                var value = JSON.stringify(item[field]).replace(/\\"/g, '""');
+                line.push(JSON.stringify(value));
             });
             csv.push(line.join(','));
         });
@@ -129,7 +130,8 @@ export default Ember.Component.extend({
         squashed.forEach((item) => {
             var line = [];
             fields.forEach(function(field) {
-                line.push(JSON.stringify(item[field]));
+                var value = JSON.stringify(item[field]).replace(/\\"/g, '""');
+                line.push(value);
             });
             csv.push(line.join(','));
         });
